@@ -1,6 +1,6 @@
 # npm Module Starter
 
-This is a simple example of a JavaScript module, using Webpack 2 and Babel to generate a browser compatible UMD version.
+This is a simple example of a JavaScript module, using Webpack 4 and Babel to generate a browser compatible UMD version.
 
 It also uses Jest as unit testing.
 
