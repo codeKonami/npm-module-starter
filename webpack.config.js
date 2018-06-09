@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: './lib/add.js',
@@ -7,7 +8,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'add.min.js',
     libraryTarget: 'umd',
-    library: 'add'
+    library: 'add',
+    // Workaround to fix umd build, restore webpack v3 behaviour
+    // https://github.com/webpack/webpack/issues/6677
+    // https://github.com/webpack/webpack/issues/6642
+    globalObject: "typeof self !== 'undefined' ? self : this"
   },
   module: {
     rules: [
@@ -18,6 +23,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    new UglifyJsPlugin(),
   ]
 }
